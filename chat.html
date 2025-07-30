@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live Chat - HY-rage Gaming Portal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #0d324d, #7f5a83);
+    color: #e0dede;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  header {
+    background: rgba(48, 23, 72, 0.9);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px #ab83c0;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #cbb9e3;
+    text-shadow: 0 0 12px #ab83c0;
+  }
+  nav {
+    background: #301748;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 10px;
+  }
+  nav button {
+    background: transparent;
+    border: 2px solid #ab83c0;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #cbb9e3;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  nav button:hover {
+    background: #ab83c0;
+    color: #301748;
+    box-shadow: 0 0 20px #ab83c0;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    margin: 30px auto;
+    background: rgba(48, 23, 72, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 0 30px #ab83c0cc;
+    padding: 20px;
+  }
+
+  /* Username form */
+  #username-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 10px;
+  }
+  #username-input {
+    padding: 12px 18px;
+    font-size: 1.2rem;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+    width: 250px;
+    box-shadow: inset 0 0 10px #ab83c0;
+    color: #cbb9e3;
+    background: #2d1e4e;
+  }
+  #username-submit {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 14px;
+    border: none;
+    background: #ab83c0;
+    color: #301748;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #username-submit:hover {
+    background: #7b599d;
+  }
+
+  /* Chat messages container */
+  #chat-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: #3c2a5f;
+    border-radius: 15px;
+    padding: 15px;
+    overflow-y: auto;
+    box-shadow: inset 0 0 20px #ab83c0cc;
+  }
+  .message {
+    margin-bottom: 14px;
+    padding: 12px 18px;
+    border-radius: 20px;
+    max-width: 75%;
+    word-wrap: break-word;
+    box-shadow: 0 0 12px #a084c6aa;
+    animation: fadeIn 0.4s ease;
+  }
+  .message.you {
+    background: #ab83c0;
+    color: #301748;
+    align-self: flex-end;
+    font-weight: 700;
+  }
+  .message.other {
+    background: #5b4a7d;
+    color: #d1c8e7;
+    align-self: flex-start;
+  }
+  .message .sender {
+    font-weight: 900;
+    font-size: 0.9rem;
+    opacity: 0.75;
+    margin-bottom: 6px;
+  }
+  .message .time {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    margin-top: 6px;
+    text-align: right;
+  }
+
+  /* Input area */
+  #input-area {
+    display: flex;
+    margin-top: 20px;
+    gap: 12px;
+  }
+  #message-input {
+    flex-grow: 1;
+    padding: 14px 18px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    box-shadow: inset 0 0 15px #ab83c0cc;
+    background: #2d1e4e;
+    color: #cbb9e3;
+  }
+  #send-btn {
+    background: #ab83c0;
+    color: #301748;
+    border: none;
+    border-radius: 25px;
+    font-weight: 700;
+    padding: 14px 25px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #send-btn:hover {
+    background: #7b599d;
+  }
+
+  /* Hide chat until username is set */
+  #chat-section {
+    display: none;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  footer {
+    text-align: center;
+    padding: 15px 10px;
+    background: #301748;
+    color: #ab83c0cc;
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 15px #ab83c0aa;
+  }
+
+  @media (max-width: 600px) {
+    nav button {
+      padding: 10px 15px;
+      font-size: 0.9rem;
+    }
+    #username-input {
+      width: 150px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>HY-rage Live Chat</h1>
+</header>
+
+<nav aria-label="Main navigation">
+  <button onclick="location.href='index.html'">Home</button>
+  <button onclick="location.href='community.html'">Community Hub</button>
+  <button onclick="location.href='events.html'">Events</button>
+  <button onclick="location.href='clans.html'">Clans</button>
+  <button onclick="location.href='news.html'">News</button>
+  <button onclick="location.href='creators.html'">Creators</button>
+  <button onclick="location.href='support.html'">Support</button>
+  <button onclick="location.href='chat.html'">Live Chat</button>
+  <button onclick="location.href='admin.html'">Admin Dashboard</button>
+</nav>
+
+<main>
+  <div id="username-container" role="dialog" aria-labelledby="username-label">
+    <label for="username-input" id="username-label" style="color:#cbb9e3; font-weight:700; font-size:1.2rem;">
+      Enter your username:
+    </label>
+    <input type="text" id="username-input" maxlength="20" placeholder="Your name..." aria-required="true" autocomplete="off" />
+    <button id="username-submit" aria-label="Submit username">Join Chat</button>
+  </div>
+
+  <section id="chat-section" aria-live="polite" aria-label="Chat messages">
+    <div id="chat-container" role="log" aria-atomic="false" tabindex="0"></div>
+
+    <form id="input-area" aria-label="Send a message">
+      <input type="text" id="message-input" maxlength="300" placeholder="Type your message here..." autocomplete="off" aria-required="true" />
+      <button type="submit" id="send-btn" aria-label="Send message">Send</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 HY-rage Gaming Portal — All Rights Reserved
+</footer>
+
+<script>
+  // DOM Elements
+  const usernameContainer = document.getElementById('username-container');
+  const usernameInput = document.getElementById('username-input');
+  const usernameSubmit = document.getElementById('username-submit');
+  const chatSection = document.getElementById('chat-section');
+  const chatContainer = document.getElementById('chat-container');
+  const messageInput = document.getElementById('message-input');
+  const inputArea = document.getElementById('input-area');
+
+  // Key for storing messages in localStorage
+  const STORAGE_KEY = 'hyrage_chat_messages';
+
+  // Current user
+  let currentUser = null;
+
+  // Load messages from localStorage or empty array
+  function loadMessages() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return [];
+    try {
+      return JSON.parse(stored);
+    } catch {
+      return [];
+    }
+  }
+
+  // Save messages to localStorage
+  function saveMessages(messages) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+  }
+
+  // Render chat messages
+  function renderMessages(messages) {
+    chatContainer.innerHTML = '';
+    messages.forEach(({username, text, time}) => {
+      const msgEl = document.createElement('div');
+      msgEl.classList.add('message');
+      msgEl.classList.add(username === currentUser ? 'you' : 'other');
+
+      const senderEl = document.createElement('div');
+      senderEl.className = 'sender';
+      senderEl.textContent = username;
+      msgEl.appendChild(senderEl);
+
+      const textEl = document.createElement('div');
+      textEl.textContent = text;
+      msgEl.appendChild(textEl);
+
+      const timeEl = document.createElement('div');
+      timeEl.className = 'time';
+      const d = new Date(time);
+      timeEl.textContent = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      msgEl.appendChild(timeEl);
+
+      chatContainer.appendChild(msgEl);
+    });
+    // Scroll to bottom
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+
+  // Add new message
+  function addMessage(username, text) {
+    if (!text.trim()) return;
+    const messages = loadMessages();
+    messages.push({username, text, time: Date.now()});
+    saveMessages(messages);
+    renderMessages(messages);
+  }
+
+  // Initialize chat after username entered
+  usernameSubmit.addEventListener('click', () => {
+    const name = usernameInput.value.trim();
+    if (name.length < 1) {
+      alert('Please enter a valid username');
+      return;
+    }
+    currentUser = name;
+    usernameContainer.style.display = 'none';
+    chatSection.style.display = 'flex';
+    renderMessages(loadMessages());
+    messageInput.focus();
+  });
+
+  // Submit message form
+  inputArea.addEventListener('submit', e => {
+    e.preventDefault();
+    const msg = messageInput.value.trim();
+    if (msg.length < 1) return;
+    addMessage(currentUser, msg);
+    messageInput.value = '';
+    messageInput.focus();
+  });
+
+  // Listen for storage events (messages from other tabs)
+  window.addEventListener('storage', e => {
+    if (e.key === STORAGE_KEY) {
+      const messages = loadMessages();
+      renderMessages(messages);
+    }
+  });
+
+  // Accessibility: enter key triggers username submit
+  usernameInput.addEventListener('keydown', e => {
+    if(e.key === 'Enter') {
+      usernameSubmit.click();
+    }
+  });
+
+  // Accessibility: enter key triggers send message
+  messageInput.addEventListener('keydown', e => {
+    if(e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      inputArea.dispatchEvent(new Event('submit'));
+    }
+  });
+</script>
+
+</body>
+</html>

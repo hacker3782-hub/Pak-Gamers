@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Community Hub - HY-rage Gaming Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+  html, body {
+    margin: 0; padding: 0; height: 100%; font-family: 'Orbitron', sans-serif;
+    background: url('https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #00ffff;
+    overflow-x: hidden;
+  }
+  .overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 0;
+  }
+  header {
+    position: relative; z-index: 1; padding: 30px 20px; text-align: center;
+    text-shadow: 0 0 10px #00ffff;
+  }
+  header h1 {
+    font-size: 3rem; margin-bottom: 10px;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  header p {
+    font-size: 1.3rem; max-width: 700px; margin: 0 auto 40px;
+    color: #66ffffcc;
+  }
+  @keyframes glow {
+    0% { text-shadow: 0 0 5px #00ffff; }
+    100% { text-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff; }
+  }
+
+  nav.main-nav {
+    position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 40px;
+  }
+  nav.main-nav button {
+    background: transparent;
+    border: 2px solid #00ffff;
+    border-radius: 8px;
+    padding: 14px 28px;
+    color: #00ffff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav.main-nav button:hover {
+    background-color: #00ffff;
+    color: #000;
+    box-shadow: 0 0 20px #00ffff;
+  }
+
+  main {
+    position: relative; z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    background: rgba(0,0,0,0.55);
+    border-radius: 15px;
+    padding: 35px 45px;
+    box-shadow: 0 0 35px #00ffffaa;
+    color: #ccefff;
+    line-height: 1.7;
+  }
+  main h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 2.5rem;
+    color: #00ffff;
+    text-shadow: 0 0 15px #00ffff;
+  }
+
+  /* Sections */
+  section {
+    margin-bottom: 45px;
+  }
+  section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    border-bottom: 2px solid #00ffff;
+    padding-bottom: 6px;
+  }
+
+  /* Community Actions Grid */
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+    gap: 25px;
+  }
+  .action-card {
+    background: #001e22cc;
+    border-radius: 15px;
+    padding: 25px 20px;
+    box-shadow: 0 0 20px #00ffff99;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .action-card:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 35px #00ffffcc;
+  }
+  .action-card h4 {
+    margin: 0 0 12px;
+    color: #00ffff;
+  }
+  .action-card p {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #a3f4ffcc;
+  }
+  .action-card button {
+    margin-top: 18px;
+    padding: 10px 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    background-color: #00ffff;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .action-card button:hover {
+    background-color: #00cccc;
+  }
+
+  /* Social Feed */
+  .social-feed {
+    max-height: 250px;
+    overflow-y: auto;
+    background: #001e2211;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: inset 0 0 10px #00ffff88;
+    font-size: 0.95rem;
+    color: #aafcffcc;
+  }
+  .social-post {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #00ffff44;
+  }
+  .social-post:last-child {
+    border-bottom: none;
+  }
+  .social-post strong {
+    color: #00ffffee;
+  }
+  .social-post span {
+    font-size: 0.85rem;
+    color: #77dfffbb;
+  }
+
+  /* Modal */
+  .modal {
+    position: fixed;
+    top: 0; left: 0; right:0; bottom: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+  }
+  .modal-content {
+    background: #00262a;
+    padding: 30px 35px;
+    max-width: 450px;
+    border-radius: 15px;
+    box-shadow: 0 0 35px #00ffffcc;
+    color: #00ffff;
+    text-align: center;
+  }
+  .modal-content h3 {
+    margin-top: 0;
+  }
+  .modal-content p {
+    font-size: 1.1rem;
+  }
+  .modal-content button {
+    margin-top: 25px;
+    padding: 12px 28px;
+    font-weight: 700;
+    background-color: #00ffff;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .modal-content button:hover {
+    background-color: #00cccc;
+  }
+
+  /* Footer - small note */
+  footer {
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.9rem;
+    color: #00ffffcc;
+    border-top: 1px solid #00ffff33;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    main {
+      padding: 25px 30px;
+    }
+    nav.main-nav button {
+      flex: 1 1 100%;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <header>
+    <h1>Community Hub</h1>
+    <p>Connect, share, and grow with gamers worldwide. Join discussions, view live streams, and participate in exclusive events.</p>
+  </header>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='events.html'">Events</button>
+    <button onclick="location.href='profiles.html'">Player Profiles</button>
+    <button onclick="location.href='clans.html'">Clans</button>
+    <button onclick="location.href='news.html'">News</button>
+    <button onclick="location.href='creators.html'">Creators</button>
+    <button onclick="location.href='support.html'">Support</button>
+    <button onclick="location.href='chat.html'">Live Chat</button>
+    <button onclick="location.href='admin.html'">Admin Dashboard</button>
+  </nav>
+
+  <main>
+    <section aria-labelledby="community-actions">
+      <h2 id="community-actions">Explore Community Features</h2>
+      <div class="actions-grid">
+        <div class="action-card" tabindex="0" role="button" aria-pressed="false" onclick="openModal('forum')">
+          <h4>Discussion Forums</h4>
+          <p>Engage with gamers on topics from strategies to tech setups. Share your knowledge or ask for tips!</p>
+          <button>Visit Forums</button>
+        </div>
+        <div class="action-card" tabindex="0" role="button" aria-pressed="false" onclick="openModal('liveStreams')">
+          <h4>Live Streams</h4>
+          <p>Watch real-time gameplay and chat with streamers from your favorite games.</p>
+          <button>Watch Now</button>
+        </div>
+        <div class="action-card" tabindex="0" role="button" aria-pressed="false" onclick="openModal('tournaments')">
+          <h4>Tournaments</h4>
+          <p>Find upcoming tournaments, register your team, and climb the leaderboard.</p>
+          <button>Register</button>
+        </div>
+        <div class="action-card" tabindex="0" role="button" aria-pressed="false" onclick="openModal('guides')">
+          <h4>Game Guides</h4>
+          <p>Access detailed strategies, walkthroughs, and tips for all popular games.</p>
+          <button>Read Guides</button>
+        </div>
+        <div class="action-card" tabindex="0" role="button" aria-pressed="false" onclick="openModal('merchandise')">
+          <h4>Merchandise</h4>
+          <p>Get official HY-rage merch and exclusive gear to show off your gamer pride.</p>
+          <button>Shop Now</button>
+        </div>
+        <div class="action-card" tabindex="0" role="button" aria-pressed="false" onclick="openModal('events')">
+          <h4>Community Events</h4>
+          <p>Participate in special community-only events and challenges.</p>
+          <button>Join Events</button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="social-feed">
+      <h3 id="social-feed">Latest from the Community</h3>
+      <div class="social-feed" tabindex="0" aria-live="polite">
+        <div class="social-post">
+          <strong>@GamerX:</strong> Just won the epic battle royale in PUBG Mobile! Feeling unstoppable! <span>2h ago</span>
+        </div>
+        <div class="social-post">
+          <strong>@StreamerZ:</strong> Going live with some Asphalt 9 races. Come join the fun! <span>4h ago</span>
+        </div>
+        <div class="social-post">
+          <strong>@BedwarsPro:</strong> Check out my latest Bedwars clutch – insane comeback! <span>7h ago</span>
+        </div>
+        <div class="social-post">
+          <strong>@NewbieGamer:</strong> Looking for teammates for the next Roblox adventure! <span>10h ago</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    HY-rage Gaming Portal &copy; 2025 - Connect, Play, Dominate!
+  </footer>
+
+  <!-- Modal Structure -->
+  <div class="modal" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal-content">
+      <h3 id="modalTitle">Loading...</h3>
+      <p id="modalDesc">Please wait.</p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+<script>
+  const modal = document.getElementById('infoModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+
+  function openModal(topic) {
+    let title = '';
+    let desc = '';
+
+    switch(topic) {
+      case 'forum':
+        title = 'Discussion Forums';
+        desc = 'Join conversations, share tips, or ask questions. Connect with gamers worldwide and discuss your favorite games.';
+        break;
+      case 'liveStreams':
+        title = 'Live Streams';
+        desc = 'Watch top streamers play in real-time. Interact through chat and learn new tricks.';
+        break;
+      case 'tournaments':
+        title = 'Tournaments';
+        desc = 'View all upcoming tournaments, register your team, and compete for glory and prizes!';
+        break;
+      case 'guides':
+        title = 'Game Guides';
+        desc = 'Explore detailed guides for your favorite games. From beginner tips to expert strategies.';
+        break;
+      case 'merchandise':
+        title = 'Merchandise';
+        desc = 'Browse and order exclusive HY-rage gear to wear your gamer pride.';
+        break;
+      case 'events':
+        title = 'Community Events';
+        desc = 'Participate in community-only challenges and special events. Win rewards and bragging rights.';
+        break;
+      default:
+        title = 'Info';
+        desc = 'Details coming soon!';
+    }
+
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+    modal.style.display = 'flex';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  // Close modal on ESC key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'flex') {
+      closeModal();
+    }
+  });
+</script>
+</body>
+</html>

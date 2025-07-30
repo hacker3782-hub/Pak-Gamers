@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HY-rage Gaming Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0a0a1a;
+      color: #fff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 1400px;
+      height: 1400px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Esports_Industry_Icon.png/512px-Esports_Industry_Icon.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.03;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      min-height: 100vh;
+      animation: scrollDown 10s linear infinite alternate;
+    }
+
+    @keyframes scrollDown {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100px); }
+    }
+
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      background: linear-gradient(90deg, #ff00cc, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      font-size: 1.1em;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: 100%;
+    }
+
+    .btn-block {
+      background: linear-gradient(90deg, #8f00ff, #00ffff);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 12px #00ffff80;
+    }
+
+    .btn-block span {
+      float: right;
+      font-weight: normal;
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+
+    .btn-block:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    .games-section {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      width: 100%;
+    }
+
+    .game-card {
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #222;
+      box-shadow: 0 0 10px #00ffff20;
+    }
+
+    .game-card img {
+      max-width: 100%;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .game-card h3 {
+      color: #00ffff;
+      margin-bottom: 8px;
+    }
+
+    .game-card p {
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    @media (min-width: 768px) {
+      .button-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn-block {
+        flex: 1 1 45%;
+        max-width: 48%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>HY-rage Gaming Portal</h1>
+    <p class="subtitle">Welcome to the ultimate gaming network. Choose your path below:</p>
+
+    <div class="button-container">
+      <div class="btn-block" onclick="location.href='community.html'">COMMUNITY HUB <span>GO</span></div>
+      <div class="btn-block" onclick="location.href='events.html'">EVENTS <span>+</span></div>
+      <div class="btn-block" onclick="location.href='profiles.html'">PLAYER PROFILES <span>VIEW</span></div>
+      <div class="btn-block" onclick="location.href='clans.html'">CLANS <span>JOIN</span></div>
+      <div class="btn-block" onclick="location.href='news.html'">NEWS <span>READ</span></div>
+      <div class="btn-block" onclick="location.href='creators.html'">CONTENT CREATORS <span>BROWSE</span></div>
+      <div class="btn-block" onclick="location.href='support.html'">SUPPORT <span>HELP</span></div>
+      <div class="btn-block" onclick="location.href='chat.html'">LIVE CHAT <span>NOW</span></div>
+      <div class="btn-block" onclick="location.href='admin.html'">ADMIN DASHBOARD <span>LOGIN</span></div>
+    </div>
+
+    <div class="games-section">
+      <!-- FULL GAME LIST -->
+      <!-- Add game cards here -->
+      <div class="game-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/PUBG_Mobile_logo.svg" alt="PUBG Mobile" />
+        <h3>PUBG Mobile</h3>
+        <p>The global battle royale sensation. Squad up, drop in, and fight to survive in this tactical shooter.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Among_Us_cover_art.png" alt="Among Us" />
+        <h3>Among Us</h3>
+        <p>Play with 4–15 players online. Complete tasks or find the impostor in this viral social deception game.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Roblox_Logo_2022.svg" alt="Roblox" />
+        <h3>Roblox</h3>
+        <p>Jump into millions of games built by players like you. From roleplay to obbys — Roblox is your playground.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/e/e4/Free_Fire_game_logo.png" alt="Free Fire" />
+        <h3>Free Fire</h3>
+        <p>Quick survival matches. Choose your character, loot fast, and dominate in 10-minute battles.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/3kV2mXY.png" alt="Stumble Guys" />
+        <h3>Stumble Guys</h3>
+        <p>A knockout party game full of chaos and crazy obstacles. Race, stumble, and fall to victory.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/EM1UrxT.png" alt="Bedwars" />
+        <h3>Bedwars</h3>
+        <p>Defend your bed, destroy others. A blocky multiplayer PvP game where strategy wins.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/6ZK0zBu.png" alt="Delta Force" />
+        <h3>Delta Force</h3>
+        <p>Join elite operations in tactical FPS combat. Coordinate, strike, and complete missions like a true warrior.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/YDqzYAr.png" alt="Battle of Guardians" />
+        <h3>Battle of Guardians</h3>
+        <p>Futuristic fighting game where legends clash. Master your guardian and rise through the ranks.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/IMZ69yv.png" alt="Efootball 2025" />
+        <h3>eFootball 2025</h3>
+        <p>The future of digital soccer. Compete online with your dream team and rewrite football history.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/w9e4Bpn.png" alt="Asphalt" />
+        <h3>Asphalt</h3>
+        <p>Defy gravity and street rules. Burn rubber in stunning supercars across exotic race tracks.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/KMvzG6q.png" alt="Bus Simulator Indonesia" />
+        <h3>Bus Simulator Indonesia</h3>
+        <p>Drive buses through scenic cities. Experience realistic simulation with local Indonesian flavor.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/vb8O63M.png" alt="WePlay" />
+        <h3>WePlay</h3>
+        <p>A party of casual games to enjoy with friends. Compete, laugh, and chill in bite-sized fun challenges.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/zZ2xCm7.png" alt="Disney Speedstorm" />
+        <h3>Disney Speedstorm</h3>
+        <p>Race as Disney and Pixar characters in fast-paced tracks full of power-ups, traps, and magic.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/dlqDgVn.png" alt="Car Simulator 2" />
+        <h3>Car Simulator 2</h3>
+        <p>Explore a 3D city, drive freely, and upgrade your car collection in this realistic car sim experience.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/Zsn2rGn.png" alt="Dude Theft Wars" />
+        <h3>Dude Theft Wars</h3>
+        <p>An open-world sandbox of chaos and fun. Steal cars, fight dudes, and do whatever you want!</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/3qEYuvY.png" alt="Human Fall Flat" />
+        <h3>Human: Fall Flat</h3>
+        <p>Hilarious physics-based platforming. Solve puzzles with friends using wobbly characters.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/vmQzvV2.png" alt="FR Legends" />
+        <h3>FR Legends</h3>
+        <p>A drifting dream for car lovers. Customize your ride and perfect your sideways slide.</p>
+      </div>
+
+      <div class="game-card">
+        <img src="https://i.imgur.com/0atDQEy.png" alt="Car Parking Multiplayer" />
+        <h3>Car Parking Multiplayer</h3>
+        <p>More than parking: open-world multiplayer with tuning, racing, walking, and driving simulations.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Us Section -->
+<section id="contact-us" style="background: #2f3b54; padding: 50px 20px; color: #e0d8f3; margin-top: 50px; border-radius: 15px; box-shadow: 0 0 20px #39a0ca;">
+  <h2 style="font-size: 2.5rem; text-align: center; color: #ade8f4; margin-bottom: 30px; text-shadow: 0 0 10px #39a0ca;">Contact Us</h2>
+  
+  <form id="contact-form" onsubmit="handleSubmit(event)" style="max-width: 600px; margin: 0 auto;">
+    <div style="margin-bottom: 20px;">
+      <label for="name" style="font-size: 1.2rem; font-weight: 600;">Full Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required style="width: 100%; padding: 12px; border-radius: 10px; font-size: 1rem; margin-top: 5px; border: 1px solid #ccc; background: #3c4a63; color: #e0d8f3;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label for="email" style="font-size: 1.2rem; font-weight: 600;">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 12px; border-radius: 10px; font-size: 1rem; margin-top: 5px; border: 1px solid #ccc; background: #3c4a63; color: #e0d8f3;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label for="message" style="font-size: 1.2rem; font-weight: 600;">Message:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Your Message" required style="width: 100%; padding: 12px; border-radius: 10px; font-size: 1rem; margin-top: 5px; border: 1px solid #ccc; background: #3c4a63; color: #e0d8f3;"></textarea>
+    </div>
+
+    <div style="text-align: center;">
+      <button type="submit" style="padding: 14px 30px; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 12px; background: #39a0ca; color: #2a003c; cursor: pointer; transition: background 0.3s ease;">
+        Send Message
+      </button>
+    </div>
+  </form>
+</section>
+
+<script>
+  // Function to handle form submission
+  function handleSubmit(event) {
+    event.preventDefault();  // Prevent the form from refreshing the page
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // For now, just alert the data (you would usually send it to a server or API)
+    alert(`Message sent successfully!\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`);
+    
+    // Clear the form after submission
+    document.getElementById('contact-form').reset();
+  }
+</script>
+
+</body>
+</html>

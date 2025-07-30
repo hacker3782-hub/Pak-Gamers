@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Clans - HY-rage Gaming Portal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+  body {
+    margin: 0; font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #1a1a40, #592e6f);
+    color: #f0d275;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+  }
+  header {
+    padding: 25px 20px;
+    text-align: center;
+    background: rgba(40, 10, 80, 0.9);
+    box-shadow: 0 0 25px #f0d275;
+  }
+  header h1 {
+    margin: 0; font-size: 3rem;
+    text-shadow: 0 0 15px #f0d275;
+  }
+  nav {
+    background: #2a003c;
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 12px; padding: 15px 10px;
+  }
+  nav button {
+    background: transparent;
+    border: 2px solid #f0d275;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #f0d275;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  nav button:hover {
+    background: #f0d275;
+    color: #2a003c;
+    box-shadow: 0 0 20px #f0d275;
+  }
+
+  main {
+    flex-grow: 1;
+    padding: 30px 25px;
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(50, 0, 80, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 0 40px #f0d275bb;
+  }
+  main h2 {
+    font-size: 2.7rem;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 0 20px #f0d275;
+  }
+
+  .clan-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+
+  .clan-card {
+    background: #3f007a;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 0 20px #f0d275aa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .clan-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 0 0 12px #f0d275;
+  }
+  .clan-description {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    line-height: 1.3;
+  }
+  .clan-members {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .join-btn {
+    background: #f0d275;
+    border: none;
+    color: #2a003c;
+    font-weight: 700;
+    padding: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 18px #f0d275cc;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .join-btn:hover {
+    background: #d3b454;
+    color: #1b0026;
+  }
+
+  .join-requests {
+    background: #3a0066cc;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 30px #f0d275bb;
+    margin-bottom: 30px;
+  }
+  .join-requests h3 {
+    margin-top: 0;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 12px #f0d275;
+  }
+  .request-list {
+    list-style: none;
+    padding-left: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .request-list li {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .request-list button {
+    background: #f0d275;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #2a003c;
+    box-shadow: 0 0 15px #f0d275aa;
+    transition: background 0.3s ease;
+  }
+  .request-list button:hover {
+    background: #d3b454;
+  }
+
+  .clan-chat-btn {
+    background: #f0d275;
+    border: none;
+    border-radius: 15px;
+    padding: 14px 30px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #2a003c;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 0 22px #f0d275dd;
+    transition: background 0.3s ease;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .clan-chat-btn:hover {
+    background: #d3b454;
+  }
+
+  footer {
+    text-align: center;
+    padding: 15px 10px;
+    background: #2a003c;
+    color: #f0d275aa;
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 15px #f0d27588;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>HY-rage Clans</h1>
+</header>
+
+<nav aria-label="Main navigation">
+  <button onclick="location.href='index.html'">Home</button>
+  <button onclick="location.href='community.html'">Community Hub</button>
+  <button onclick="location.href='events.html'">Events</button>
+  <button onclick="location.href='clans.html'">Clans</button>
+  <button onclick="location.href='news.html'">News</button>
+  <button onclick="location.href='creators.html'">Creators</button>
+  <button onclick="location.href='support.html'">Support</button>
+  <button onclick="location.href='chat.html'">Live Chat</button>
+  <button onclick="location.href='admin.html'">Admin Dashboard</button>
+</nav>
+
+<main>
+  <h2>Explore & Join Clans</h2>
+
+  <div class="clan-list" aria-label="List of gaming clans">
+    <article class="clan-card" tabindex="0" aria-label="Clan NightRaiders">
+      <div class="clan-name">NightRaiders</div>
+      <div class="clan-description">Elite squad specializing in FPS games, known for strategy and teamwork.</div>
+      <div class="clan-members">Members: 45</div>
+      <button class="join-btn" onclick="alert('Request to join NightRaiders sent!')">Request to Join</button>
+    </article>
+
+    <article class="clan-card" tabindex="0" aria-label="Clan PixelWarriors">
+      <div class="clan-name">PixelWarriors</div>
+      <div class="clan-description">Casual clan focused on Minecraft and Roblox adventures.</div>
+      <div class="clan-members">Members: 30</div>
+      <button class="join-btn" onclick="alert('Request to join PixelWarriors sent!')">Request to Join</button>
+    </article>
+
+    <article class="clan-card" tabindex="0" aria-label="Clan SpeedDemons">
+      <div class="clan-name">SpeedDemons</div>
+      <div class="clan-description">Fast-paced racers dominating Asphalt and Car Simulator leaderboards.</div>
+      <div class="clan-members">Members: 22</div>
+      <button class="join-btn" onclick="alert('Request to join SpeedDemons sent!')">Request to Join</button>
+    </article>
+
+    <article class="clan-card" tabindex="0" aria-label="Clan BattleMasters">
+      <div class="clan-name">BattleMasters</div>
+      <div class="clan-description">PvP focused clan excelling in Bedwars and Free Fire battles.</div>
+      <div class="clan-members">Members: 37</div>
+      <button class="join-btn" onclick="alert('Request to join BattleMasters sent!')">Request to Join</button>
+    </article>
+  </div>
+
+  <section class="join-requests" aria-label="Clan join requests">
+    <h3>Pending Join Requests</h3>
+    <ul class="request-list">
+      <li>
+        GamerX99 
+        <button onclick="alert('Accepted GamerX99')">Accept</button>
+        <button onclick="alert('Rejected GamerX99')">Reject</button>
+      </li>
+      <li>
+        ShadowStrike 
+        <button onclick="alert('Accepted ShadowStrike')">Accept</button>
+        <button onclick="alert('Rejected ShadowStrike')">Reject</button>
+      </li>
+      <li>
+        PixelNinja 
+        <button onclick="alert('Accepted PixelNinja')">Accept</button>
+        <button onclick="alert('Rejected PixelNinja')">Reject</button>
+      </li>
+    </ul>
+  </section>
+
+  <button class="clan-chat-btn" onclick="alert('Opening Clan Chat...')">Open Clan Chat</button>
+
+</main>
+
+<footer>
+  &copy; 2025 HY-rage Gaming Portal — All Rights Reserved
+</footer>
+
+</body>
+</html>
